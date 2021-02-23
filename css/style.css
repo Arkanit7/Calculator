@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+/* ---------Reset Styles--------- */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+picture,
+img {
+  display: inline-block;
+  vertical-align: top;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button,
+input[type="button"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"] {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*----------------End of reset styles--------------------*/
+:root {
+  font-family: "Itim", cursive;
+}
+
+._lock {
+  overflow: hidden;
+}
+
+.container, .calculator__container {
+  padding: 0 0;
+  max-width: 576px;
+  margin: 0 auto;
+}
+
+.btn {
+  position: relative;
+}
+
+.btn:after {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.btn span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  background-color: white;
+  border: thin solid silver;
+}
+
+@media only all and (min-width: 320px) {
+  .btn span {
+    font-size: calc(100vw * 0.05469 + 0.5px);
+  }
+}
+
+@media only all and (min-width: 576px) {
+  .btn span {
+    font-size: 32px;
+  }
+}
+
+.btn:hover span, .btn:focus-visible span {
+  background-color: #e6e6e6;
+}
+
+.btn._orange span {
+  color: #ff8a0a;
+}
+
+.btn._tall {
+  grid-row: span 2;
+}
+
+.btn._tall::after {
+  padding-top: 200%;
+}
+
+.btn._tall span {
+  background-color: #ff8a0a;
+  color: white;
+}
+
+.btn._tall:hover span, .btn._tall:focus-visible span {
+  background-color: #d67000;
+}
+
+/**********************
+---------CONTENT
+*********************/
+.calculator {
+  min-height: 100vh;
+  background-color: #1e1e1e;
+}
+
+.calculator__body {
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: minmax(74px, 1fr);
+      grid-template-rows: minmax(74px, 1fr);
+}
+
+@media only all and (min-width: 480px) {
+  .calculator__body {
+    -ms-grid-rows: minmax(144px, 1fr);
+        grid-template-rows: minmax(144px, 1fr);
+  }
+}
+
+.calculator__output {
+  grid-column: span 4;
+  padding: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: Gainsboro;
+  border: thin solid silver;
+}
+
+.calculator__prev-operand {
+  font-size: 20px;
+  color: #4d4d4d;
+}
+
+@media only all and (min-width: 320px) {
+  .calculator__prev-operand {
+    font-size: calc(100vw * 0.10938 + -15px);
+  }
+}
+
+@media only all and (min-width: 576px) {
+  .calculator__prev-operand {
+    font-size: 48px;
+  }
+}
+
+.calculator__current-operand {
+  font-size: 28px;
+}
+
+@media only all and (min-width: 320px) {
+  .calculator__current-operand {
+    font-size: calc(100vw * 0.14062 + -17px);
+  }
+}
+
+@media only all and (min-width: 576px) {
+  .calculator__current-operand {
+    font-size: 64px;
+  }
+}
+
+.calculator__current-operand, .calculator__prev-operand {
+  word-wrap: break-word;
+  word-break: break-all;
+}

@@ -1,0 +1,220 @@
+//pointer-events: none; makes element transparent for clicking
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+@mixin media-wp($_a) {
+  @media only all and (min-width: $_a) {
+    @content;
+  }
+}
+
+@mixin media-wm($_b) {
+  @media only all and (max-width: $_b) {
+    @content;
+  }
+}
+
+@mixin media-hp($_c) {
+  @media only all and (min-height: $_c) {
+    @content;
+  }
+}
+
+@mixin media-hm($_d) {
+  @media only all and (max-hemin: $_d) {
+    @content;
+  }
+}
+
+// @mixin distance-responsive($_a, $_b, $_vw0, $_vw1, $_prop) {
+//   #{$_prop}: #{$_a + px};
+//   @include media_wp(#{$_vw0 + px}) {
+//     #{$_prop}: calc(
+//       #{$_a + px} + (100vw - #{$_vw0 + px}) * (#{$_b} - #{$_a}) / (#{$_vw1} - #{$_vw0})
+//     );
+//   }
+//   @include media_wp(#{$_vw1 + px}) {
+//     #{$_prop}: #{$_b + px};
+//   }
+// }
+
+@mixin responsive-size($_a, $_b, $_vw0, $_vw1, $_props...) {
+  //distance-responsive(наймешне значення, найбільше значення, наймеша ширина екрану, найбільша ширина екрану, prop1, pro2, ...)
+  $_c: ($_b - $_a) / ($_vw1 - $_vw0);
+  @each $_prop in $_props {
+    #{$_prop}: #{$_a + px};
+  }
+  @media only all and (min-width: #{$_vw0 + px}) {
+    @each $_prop in $_props {
+      #{$_prop}: calc(100vw * #{$_c} + #{$_a - $_vw0 * $_c + px});
+    }
+  }
+  @media only all and (min-width: #{$_vw1 + px}) {
+    @each $_prop in $_props {
+      #{$_prop}: #{$_b + px};
+    }
+  }
+}
+
+$sexy-background: linear-gradient(223.58deg, #167524 -1.08%, #c8db81 85.64%);
+$gradient: linear-gradient(to right, #ff8a0a, #d06d00);
+
+$xx-small: 320px;
+$x-small: 480px;
+$small: 576px;
+$normal: 768px;
+$large: 992px;
+$x-large: 1200px;
+$xx-large: 1920px;
+
+$content: 576px;
+
+$trnst: 0.3s ease;
+
+$color1: #eca84d;
+$color2: #29d225;
+$color3: #ff5733;
+$color4: #0a9aff;
+
+$grid-border: thin solid silver;
+
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+@import "__reset.scss";
+
+:root {
+  font-family: "Itim", cursive;
+}
+
+._lock {
+  overflow: hidden;
+}
+
+.container {
+  $padding: 0;
+  padding: 0 $padding;
+  max-width: $content + $padding * 2;
+  margin: 0 auto;
+}
+
+.btn {
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 100%;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include responsive-size(
+      18,
+      32,
+      strip-units($xx-small),
+      strip-units($content),
+      font-size
+    );
+
+    background-color: white;
+    border: $grid-border;
+  }
+  &:hover,
+  &:focus-visible {
+    span {
+      background-color: darken($color: white, $amount: 10);
+    }
+  }
+  $l-color: #ff8a0a;
+  &._orange {
+    span {
+      color: $l-color;
+    }
+  }
+
+  &._tall {
+    grid-row: span 2;
+    &::after {
+      padding-top: 200%;
+    }
+    span {
+      background-color: $l-color;
+      color: white;
+    }
+    &:hover,
+    &:focus-visible {
+      span {
+        background-color: darken($color: $l-color, $amount: 10);
+      }
+    }
+  }
+}
+
+/**********************
+---------CONTENT
+*********************/
+.wrapper {
+}
+.calculator {
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  &__container {
+    @extend .container;
+  }
+
+  &__body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(74px, 1fr);
+    @include media-wp($x-small) {
+      grid-template-rows: minmax(144px, 1fr);
+    }
+  }
+
+  &__output {
+    grid-column: span 4;
+
+    padding: 1rem;
+
+    flex-direction: column;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    background-color: Gainsboro;
+    border: $grid-border;
+  }
+  &__prev-operand {
+    @include responsive-size(
+      20,
+      48,
+      strip-units($xx-small),
+      strip-units($content),
+      font-size
+    );
+    color: lighten(black, 30);
+  }
+  &__current-operand {
+    @include responsive-size(
+      28,
+      64,
+      strip-units($xx-small),
+      strip-units($content),
+      font-size
+    );
+  }
+  &__current-operand,
+  &__prev-operand {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+}
