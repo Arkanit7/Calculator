@@ -1,6 +1,6 @@
 {
   "name": "Calculator",
-  "short_name": "calc",
+  "short_name": "Calculator",
   "start_url": "/Calculator",
   "icons": [
     {
