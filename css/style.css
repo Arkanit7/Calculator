@@ -139,7 +139,7 @@ address {
 
 .container, .calculator__container {
   padding: 0 0;
-  max-width: 576px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
@@ -176,11 +176,11 @@ address {
 
 @media only all and (min-width: 320px) {
   .btn span {
-    font-size: calc(100vw * 0.05469 + 0.5px);
+    font-size: calc(100vw * 0.0875 + -10px);
   }
 }
 
-@media only all and (min-width: 576px) {
+@media only all and (min-width: 480px) {
   .btn span {
     font-size: 32px;
   }
@@ -262,11 +262,11 @@ address {
 
 @media only all and (min-width: 320px) {
   .calculator__prev-operand {
-    font-size: calc(100vw * 0.10938 + -15px);
+    font-size: calc(100vw * 0.175 + -36px);
   }
 }
 
-@media only all and (min-width: 576px) {
+@media only all and (min-width: 480px) {
   .calculator__prev-operand {
     font-size: 48px;
   }
@@ -278,11 +278,11 @@ address {
 
 @media only all and (min-width: 320px) {
   .calculator__current-operand {
-    font-size: calc(100vw * 0.14062 + -17px);
+    font-size: calc(100vw * 0.225 + -44px);
   }
 }
 
-@media only all and (min-width: 576px) {
+@media only all and (min-width: 480px) {
   .calculator__current-operand {
     font-size: 64px;
   }
