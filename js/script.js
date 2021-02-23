@@ -72,7 +72,7 @@ class Calculator {
   }
   convertPercents() {
     if (this.curVirtualDisplay) {
-      this.curVirtualDisplay = parseFloat(this.curVirtualDisplay) / 10;
+      this.curVirtualDisplay = parseFloat(this.curVirtualDisplay) / 100;
       this.curVirtualDisplay = this.curVirtualDisplay.toString();
     }
   }
