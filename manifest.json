@@ -1,7 +1,7 @@
 {
   "name": "Calculator",
   "short_name": "calc",
-  "start_url": "/Calculator/?home=true",
+  "start_url": "/Calculator",
   "icons": [
     {
       "src": "img/icons/manifest-icon-192.png",
